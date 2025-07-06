@@ -1,6 +1,6 @@
 package com.andres.citas_medicas.mapper;
 
-import com.andres.citas_medicas.dto.OdontologoDTO;
+import com.andres.citas_medicas.dto.Odontologo.OdontologoDTO;
 import com.andres.citas_medicas.entity.Odontologo;
 import org.mapstruct.Mapper;
 

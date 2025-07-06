@@ -1,7 +1,8 @@
 package com.andres.citas_medicas.controller;
 
-import com.andres.citas_medicas.dto.OdontologoDTO;
+import com.andres.citas_medicas.dto.Odontologo.OdontologoDTO;
 import com.andres.citas_medicas.service.OdontologoService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +23,7 @@ public class OdontologoController {
     }
 
     @PostMapping
-    public ResponseEntity<OdontologoDTO> crear(@RequestBody OdontologoDTO odontologoDTO){
+    public ResponseEntity<OdontologoDTO> crear(@RequestBody @Valid OdontologoDTO odontologoDTO){
         OdontologoDTO result = odontologoService.crear(odontologoDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(result);
 

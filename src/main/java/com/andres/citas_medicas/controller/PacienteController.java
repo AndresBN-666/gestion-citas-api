@@ -3,6 +3,7 @@ package com.andres.citas_medicas.controller;
 import com.andres.citas_medicas.dto.paciente.CrearPacienteDTO;
 import com.andres.citas_medicas.dto.paciente.PacienteDTO;
 import com.andres.citas_medicas.service.PacienteService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,14 +29,14 @@ public class PacienteController {
     }
 
     @PostMapping
-    public ResponseEntity<PacienteDTO> crearPaciente(@RequestBody CrearPacienteDTO dto){
+    public ResponseEntity<PacienteDTO> crearPaciente(@RequestBody @Valid CrearPacienteDTO dto){
         PacienteDTO resultado = pacienteService.crearPaciente(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(resultado);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<PacienteDTO> actualizarPaciente(@PathVariable Long id,
-                                                          @RequestBody CrearPacienteDTO dto){
+                                                          @RequestBody @Valid CrearPacienteDTO dto){
         PacienteDTO resultado = pacienteService.actualizarPaciente(id,dto);
         return ResponseEntity.ok(resultado);
     }

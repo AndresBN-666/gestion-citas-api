@@ -1,4 +1,4 @@
-package com.andres.citas_medicas.dto;
+package com.andres.citas_medicas.dto.Odontologo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

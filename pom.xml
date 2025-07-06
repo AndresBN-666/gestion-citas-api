@@ -5,7 +5,8 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.5.3</version>
+		<!-- <version>3.5.3</version> -->
+		<version>3.2.5</version> <!-- ✅ Cambia esto por compatibilidad con swager-->
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.andres</groupId>
@@ -81,6 +82,14 @@
 			<artifactId>mapstruct-processor</artifactId>
 			<version>1.5.5.Final</version>
 			<scope>provided</scope>
+		</dependency>
+
+		<!-- Swagger-->
+
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>2.3.0</version>
 		</dependency>
 
 	</dependencies>

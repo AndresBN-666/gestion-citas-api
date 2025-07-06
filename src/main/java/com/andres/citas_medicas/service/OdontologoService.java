@@ -1,9 +1,8 @@
 package com.andres.citas_medicas.service;
 
-import com.andres.citas_medicas.dto.OdontologoDTO;
+import com.andres.citas_medicas.dto.Odontologo.OdontologoDTO;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface OdontologoService {
 

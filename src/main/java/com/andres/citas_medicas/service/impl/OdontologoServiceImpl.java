@@ -1,6 +1,6 @@
 package com.andres.citas_medicas.service.impl;
 
-import com.andres.citas_medicas.dto.OdontologoDTO;
+import com.andres.citas_medicas.dto.Odontologo.OdontologoDTO;
 import com.andres.citas_medicas.entity.Odontologo;
 import com.andres.citas_medicas.mapper.OdontologoMapper;
 import com.andres.citas_medicas.repository.OdontologoRepository;
@@ -9,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor

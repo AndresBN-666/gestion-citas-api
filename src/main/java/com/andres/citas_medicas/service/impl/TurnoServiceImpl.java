@@ -112,7 +112,7 @@ public class TurnoServiceImpl implements TurnoService {
 
     @Override
     public List<TurnoDTO> buscarPorEstadoYfecha(LocalDate fecha, EstadoTurno estado) {
-        List<Turno> tunos = turnoRepository.findByFechaAndEstadoTurno(fecha, estado);
-        return mapper.toDTOList(tunos);
+        List<Turno> turnos = turnoRepository.findByFechaAndEstadoTurno(fecha, estado);
+        return mapper.toDTOList(turnos);
     }
 }

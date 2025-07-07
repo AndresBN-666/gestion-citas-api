@@ -1,5 +1,6 @@
 package com.andres.citas_medicas.service.impl;
 
+import com.andres.citas_medicas.dto.Odontologo.CrearOdontologoDTO;
 import com.andres.citas_medicas.dto.Odontologo.OdontologoDTO;
 import com.andres.citas_medicas.entity.Odontologo;
 import com.andres.citas_medicas.mapper.OdontologoMapper;
@@ -19,8 +20,8 @@ public class OdontologoServiceImpl implements OdontologoService {
 
 
     @Override
-    public OdontologoDTO crear(OdontologoDTO odontologoDTO) {
-        Odontologo odontologo = odontologoMapper.toEntity(odontologoDTO);
+    public OdontologoDTO crear(CrearOdontologoDTO dto) {
+        Odontologo odontologo = odontologoMapper.toEntity(dto);
         return odontologoMapper.toDto(odontologoRepository.save(odontologo));
     }
 

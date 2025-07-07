@@ -29,6 +29,9 @@ public class HorarioServiceImpl implements HorarioService {
 
     @Override
     public List<HorarioDTO> listarPorOdontologo(Long idOdontologo) {
+        Odontologo odontologo = odontologoRepository.findById(idOdontologo).
+                orElseThrow(() ->new RuntimeException("Odontologo no encontrado"));
+
         List<Horario> horarios = horarioRepository.findByOdontologoId(idOdontologo);
         return mapper.toDTOList(horarios);
     }

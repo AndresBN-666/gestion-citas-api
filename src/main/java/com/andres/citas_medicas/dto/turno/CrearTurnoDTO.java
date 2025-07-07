@@ -3,6 +3,7 @@ package com.andres.citas_medicas.dto.turno;
 import com.andres.citas_medicas.enums.EstadoTurno;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -10,6 +11,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Data
+@AllArgsConstructor
 public class CrearTurnoDTO {
 
     @Future(message = "La fecha no puede ser pasada")

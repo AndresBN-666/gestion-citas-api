@@ -3,11 +3,13 @@ package com.andres.citas_medicas.dto.horario;
 import com.andres.citas_medicas.enums.DiaSemana;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.time.LocalTime;
 
 @Data
+@AllArgsConstructor
 public class CrearHorarioDTO {
 
     @NotNull(message = "Dia semana no debe estar vacio")

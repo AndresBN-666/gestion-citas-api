@@ -3,9 +3,11 @@ package com.andres.citas_medicas.dto.Odontologo;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
+@AllArgsConstructor
 public class CrearOdontologoDTO {
 
     @NotBlank(message = "Nombre no debe estar vacio")

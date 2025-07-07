@@ -28,7 +28,7 @@ public class PacienteServiceImpl implements PacienteService {
     public PacienteDTO listarPacientePorId(Long id) {
 
         Paciente paciente = pacienteRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("paciente no encontrado"));
+                .orElseThrow(() -> new RuntimeException("Paciente no encontrado"));
 
         return mapper.toDTO(paciente);
     }

@@ -10,6 +10,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,6 +23,7 @@ public class PacienteController {
 
     @Operation(summary = "Listar todos los pacientes")
     @ApiResponse(responseCode = "200", description = "Listado completo de pacientes")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @GetMapping
     public ResponseEntity<List<PacienteDTO>> listarTodos(){
         return ResponseEntity.ok(pacienteService.listarTodos());
@@ -32,6 +34,7 @@ public class PacienteController {
             @ApiResponse(responseCode = "200", description = "Paciente encontrado"),
             @ApiResponse(responseCode = "404", description = "Paciente no encontrado")
     })
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @GetMapping("/{id}")
     public ResponseEntity<PacienteDTO> buscarPorId(@PathVariable Long id){
         PacienteDTO resultado = pacienteService.listarPacientePorId(id);
@@ -44,6 +47,7 @@ public class PacienteController {
             @ApiResponse(responseCode = "201", description = "Paciente creado exitosamente"),
             @ApiResponse(responseCode = "400", description = "Datos inválidos en la solicitud")
     })
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     public ResponseEntity<PacienteDTO> crearPaciente(@RequestBody @Valid CrearPacienteDTO dto){
         PacienteDTO resultado = pacienteService.crearPaciente(dto);
@@ -55,6 +59,7 @@ public class PacienteController {
             @ApiResponse(responseCode = "200", description = "Paciente actualizado correctamente"),
             @ApiResponse(responseCode = "404", description = "Paciente no encontrado")
     })
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/{id}")
     public ResponseEntity<PacienteDTO> actualizarPaciente(@PathVariable Long id,
                                                           @RequestBody @Valid CrearPacienteDTO dto){
@@ -68,6 +73,7 @@ public class PacienteController {
             @ApiResponse(responseCode = "204", description = "Paciente eliminado correctamente"),
             @ApiResponse(responseCode = "404", description = "Paciente no encontrado")
     })
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminarPaciente(@PathVariable Long id){
         pacienteService.eliminarPaciente(id);

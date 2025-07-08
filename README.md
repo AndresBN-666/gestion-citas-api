@@ -77,6 +77,6 @@ API REST construida con Spring Boot para gestionar odontólogos, pacientes, turn
 
 4. Abre Swagger: http://localhost:8080/swagger-ui.html.
 
-✨ Créditos
-Andrés Bárcena Neyra
+✨ Créditos:
+Andrés Bárcena Neyra -
 Backend Developer

@@ -12,6 +12,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -26,6 +27,7 @@ public class TurnoController {
 
     @Operation(summary = "Listar todos los turnos")
     @ApiResponse(responseCode = "200", description = "Lista de todos los turnos")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @GetMapping
     public ResponseEntity<List<TurnoDTO>>listarTurnos() {
         return ResponseEntity.ok(turnoService.listarTodos());
@@ -37,6 +39,7 @@ public class TurnoController {
             @ApiResponse(responseCode = "201", description = "Turno creado exitosamente"),
             @ApiResponse(responseCode = "400", description = "Datos inválidos en el cuerpo de la solicitud")
     })
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     public ResponseEntity<TurnoDTO> crearTurno(@RequestBody @Valid CrearTurnoDTO turnoDTO) {
         return ResponseEntity.status(HttpStatus.CREATED)
@@ -49,6 +52,7 @@ public class TurnoController {
             @ApiResponse(responseCode = "204", description = "Turno cancelado correctamente"),
             @ApiResponse(responseCode = "404", description = "Turno no encontrado")
     })
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/cancelar/{id}")
     public ResponseEntity<Void> cancelarTurno(@PathVariable Long id) {
         turnoService.cancelarTurno(id);
@@ -61,6 +65,7 @@ public class TurnoController {
             @ApiResponse(responseCode = "204", description = "Turno completado correctamente"),
             @ApiResponse(responseCode = "404", description = "Turno no encontrado")
     })
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/completar/{id}")
     public ResponseEntity<Void> completarTurno(@PathVariable Long id) {
         turnoService.completarTurno(id);
@@ -70,6 +75,7 @@ public class TurnoController {
 
     @Operation(summary = "Buscar turnos por estado")
     @ApiResponse(responseCode = "200", description = "Lista de turnos con el estado indicado")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @GetMapping("/estado")
     public ResponseEntity<List<TurnoDTO>> buscarPorEstado(@RequestParam("estado") EstadoTurno estado) {
         return ResponseEntity.ok(turnoService.buscarPorEstado(estado));
@@ -77,6 +83,7 @@ public class TurnoController {
 
     @Operation(summary = "Buscar turnos por fecha")
     @ApiResponse(responseCode = "200", description = "Lista de turnos en la fecha especificada")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @GetMapping("/fecha")
     public ResponseEntity<List<TurnoDTO>> buscarPorFecha(
             @RequestParam("fecha") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)  LocalDate fecha) {
@@ -85,6 +92,7 @@ public class TurnoController {
 
     @Operation(summary = "Buscar turnos por fecha y estado")
     @ApiResponse(responseCode = "200", description = "Lista de turnos que coinciden con la fecha y el estado")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @GetMapping("/buscar")
     public ResponseEntity<List<TurnoDTO>> buscarPorFechaYEstado(
             @RequestParam("fecha") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fecha,

@@ -10,6 +10,7 @@ import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,6 +24,7 @@ public class HorarioController {
 
     @Operation(summary = "Listar todos los horarios")
     @ApiResponse(responseCode = "200", description = "Lista de horarios obtenida correctamente")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @GetMapping
     public ResponseEntity<List<HorarioDTO>> listaHorarios() {
         return ResponseEntity.ok(horarioService.listarTodos());
@@ -34,6 +36,7 @@ public class HorarioController {
             @ApiResponse(responseCode = "200", description = "Horarios del odontólogo obtenidos correctamente"),
             @ApiResponse(responseCode = "404", description = "Odontólogo no encontrado")
     })
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @GetMapping("/odontologo/{id}")
     public ResponseEntity<List<HorarioDTO>> listarPorOdontolgo(@PathVariable Long id) {
         return ResponseEntity.ok(horarioService.listarPorOdontologo(id));
@@ -44,6 +47,7 @@ public class HorarioController {
             @ApiResponse(responseCode = "201", description = "Horario creado exitosamente"),
             @ApiResponse(responseCode = "400", description = "Datos inválidos")
     })
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     public ResponseEntity<HorarioDTO> crearHorario(@RequestBody @Valid CrearHorarioDTO horarioDTO) {
         return ResponseEntity.status(HttpStatus.CREATED)
@@ -57,6 +61,7 @@ public class HorarioController {
             @ApiResponse(responseCode = "404", description = "Horario no encontrado"),
             @ApiResponse(responseCode = "400", description = "Datos inválidos")
     })
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/{id}")
     public ResponseEntity<HorarioDTO> actualizarHorario(@PathVariable Long id,
                                                         @RequestBody @Valid CrearHorarioDTO horarioDTO) {
@@ -68,6 +73,7 @@ public class HorarioController {
             @ApiResponse(responseCode = "204", description = "Horario eliminado exitosamente"),
             @ApiResponse(responseCode = "404", description = "Horario no encontrado")
     })
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminarHorario(@PathVariable Long id) {
         horarioService.eliminar(id);

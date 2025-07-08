@@ -39,7 +39,7 @@ public class TurnoController {
             @ApiResponse(responseCode = "201", description = "Turno creado exitosamente"),
             @ApiResponse(responseCode = "400", description = "Datos inválidos en el cuerpo de la solicitud")
     })
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @PostMapping
     public ResponseEntity<TurnoDTO> crearTurno(@RequestBody @Valid CrearTurnoDTO turnoDTO) {
         return ResponseEntity.status(HttpStatus.CREATED)
@@ -52,7 +52,7 @@ public class TurnoController {
             @ApiResponse(responseCode = "204", description = "Turno cancelado correctamente"),
             @ApiResponse(responseCode = "404", description = "Turno no encontrado")
     })
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @PutMapping("/cancelar/{id}")
     public ResponseEntity<Void> cancelarTurno(@PathVariable Long id) {
         turnoService.cancelarTurno(id);
@@ -65,7 +65,7 @@ public class TurnoController {
             @ApiResponse(responseCode = "204", description = "Turno completado correctamente"),
             @ApiResponse(responseCode = "404", description = "Turno no encontrado")
     })
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @PutMapping("/completar/{id}")
     public ResponseEntity<Void> completarTurno(@PathVariable Long id) {
         turnoService.completarTurno(id);
